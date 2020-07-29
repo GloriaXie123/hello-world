@@ -1,0 +1,31 @@
+[root@kunpeng1 opt]# k get svc  yumc-as-23-kfc-pt-v1 -n prophet-resource-recommend -o yaml
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    api-gw-conf: '{"gw-api-confs":[{"listen-paths":"/automl-engine/yumc-as/111/23","enable-auth":false,"stripe-url":true}]}'
+  creationTimestamp: 2019-10-23T11:15:45Z
+  labels:
+    enable-on-api-gw: "true"
+    prophet.4paradigm.com/pasService: d5ee85be-33b2-43d7-b2b6-e345f2b218a2
+    prophet.4paradigm.com/pasServiceMonitor: pas-d5ee85be-33b2-43d7-b2b6-e345f2b218a2-111-23-yumc-as
+  name: yumc-as-23-kfc-pt-v1
+  namespace: prophet-resource-recommend
+  resourceVersion: "113856689"
+  selfLink: /api/v1/namespaces/prophet-resource-recommend/services/yumc-as-23-kfc-pt-v1
+  uid: 75a35276-f586-11e9-9b56-0894ef770d44
+spec:
+  clusterIP: 10.42.181.112
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: port
+    nodePort: 31281
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    deploy: d5ee85be-33b2-43d7-b2b6-e345f2b218a2
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
